@@ -4,6 +4,7 @@ const { Meta } = Card;
 
 export default function RaffleCard({ raffle }) {
   const icon = (raffle.fox) ? '🟠' : '🚀'
+  const pct = 100 / (1 + raffle.sold)
   return (
     <Col>
       <a href={`https://rafffle.famousfoxes.com/raffle/${raffle.raffle}`}>
@@ -15,7 +16,7 @@ export default function RaffleCard({ raffle }) {
           }}
           cover={<img alt={raffle.nft.name} src={raffle.nft.image} />}
         >
-          <Tooltip title={`${raffle.price/1000000000} ${raffle.mint.substring(0,4)}`}>
+          <Tooltip title={`${pct.toFixed(2)}% for ${raffle.price  * Math.pow(10, -raffle.decimals)} ${raffle.mint.substring(0,4)}`}>
             <Meta
               title={`${icon} ${raffle.nft.name}`}
               description={<Description raffle={raffle} />} />
@@ -53,22 +54,6 @@ const sample = {
         "trait_type": "Fur",
         "value": "Red Panda"
       },
-      {
-        "trait_type": "Mouth",
-        "value": "Okay"
-      },
-      {
-        "trait_type": "Eyes",
-        "value": "Disappointed"
-      },
-      {
-        "trait_type": "Hat",
-        "value": "Sweatband"
-      },
-      {
-        "trait_type": "Clothes",
-        "value": "Loose Overalls"
-      }
     ],
     "collection": "okay_bears",
     "externalUrl": "https://www.okaybears.com/",
