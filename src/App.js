@@ -1,22 +1,27 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
+import { Row } from 'antd';
+import RaffleCard from './components/RaffleCard';
+import 'antd/dist/antd.css';
 import './App.css';
 
 function App() {
+  const [raffles, setRaffles] = useState();
+  useEffect(() => {
+    // fetch('http://localhost:3001/')
+    fetch('https://us-central1-rafffle-sniper.cloudfunctions.net/api/')
+      .then(res => res.json())
+      .then(json => setRaffles(json.sort((a,b) => a.end - b.end)))
+      .catch(console.error);
+  }, []);
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        {!raffles
+          ? <p>Loading...</p>
+          : raffles.map(r => (
+            <RaffleCard key={r.raffle}  raffle={r} />
+          ))
+        }
       </header>
     </div>
   );
