@@ -4,6 +4,7 @@ const { Meta } = Card;
 
 export default function RaffleCard({ raffle }) {
   const icon = (raffle.fox) ? '🟠' : '🚀'
+  const flagged = (raffle.flagged) ? '⛔️' : ''
   const pct = 100 / (1 + raffle.sold)
   return (
     <Col>
@@ -18,7 +19,7 @@ export default function RaffleCard({ raffle }) {
         >
           <Tooltip title={`${pct.toFixed(2)}% for ${raffle.price  * Math.pow(10, -raffle.decimals)} ${raffle.mint.substring(0,4)}`}>
             <Meta
-              title={`${icon} ${raffle.nft.name}`}
+              title={`${flagged} ${icon} ${raffle.nft.name}`}
               description={<Description raffle={raffle} />} />
           </Tooltip>
         </Card>
