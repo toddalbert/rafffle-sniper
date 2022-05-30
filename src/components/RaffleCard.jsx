@@ -1,10 +1,9 @@
 import { Card, Col } from 'antd';
 import Description from './Description';
+import Title from './Title';
 const { Meta } = Card;
 
 export default function RaffleCard({ raffle }) {
-  const icon = (raffle.fox) ? '🟠' : '🚀'
-  const flagged = (raffle.flagged) ? '⛔️' : ''
   return (
     <Col>
       <a href={`https://rafffle.famousfoxes.com/raffle/${raffle.raffle}`}>
@@ -17,7 +16,7 @@ export default function RaffleCard({ raffle }) {
           cover={<img alt={raffle.nft.name} src={raffle.nft.image} />}
         >
           <Meta
-            title={`${flagged} ${icon} ${raffle.nft.name}`}
+            title={<Title raffle={raffle} />}
             description={<Description raffle={raffle} />} />
         </Card>
       </a>
