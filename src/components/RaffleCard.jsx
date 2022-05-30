@@ -1,11 +1,10 @@
-import { Card, Col, Tooltip } from 'antd';
+import { Card, Col } from 'antd';
 import Description from './Description';
 const { Meta } = Card;
 
 export default function RaffleCard({ raffle }) {
   const icon = (raffle.fox) ? '🟠' : '🚀'
   const flagged = (raffle.flagged) ? '⛔️' : ''
-  const pct = 100 / (1 + raffle.sold)
   return (
     <Col>
       <a href={`https://rafffle.famousfoxes.com/raffle/${raffle.raffle}`}>
@@ -17,11 +16,9 @@ export default function RaffleCard({ raffle }) {
           }}
           cover={<img alt={raffle.nft.name} src={raffle.nft.image} />}
         >
-          <Tooltip title={`${pct.toFixed(2)}% for ${raffle.price  * Math.pow(10, -raffle.decimals)} ${raffle.mint.substring(0,4)}`}>
-            <Meta
-              title={`${flagged} ${icon} ${raffle.nft.name}`}
-              description={<Description raffle={raffle} />} />
-          </Tooltip>
+          <Meta
+            title={`${flagged} ${icon} ${raffle.nft.name}`}
+            description={<Description raffle={raffle} />} />
         </Card>
       </a>
     </Col>
