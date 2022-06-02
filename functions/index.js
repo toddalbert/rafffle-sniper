@@ -37,6 +37,12 @@ app.get('/', (req, res) => {
         || entry.nft.collection === 'okay_bears'
         || entry.nft.collection === 'famous_fox_federation'
         || entry.nft.collection === 'bohemia_'
+        || entry.nft.collection === 'communi3'
+        || entry.nft.collection === 'stoned_ape_crew'
+        || entry.nft.collection === 'degenerate_ape_academy'
+        || entry.nft.collection === 'boryoku_dragonz'
+        || entry.nft.collection === 'boryoku_baby_dragonz'
+        || entry.nft.collection === 'the_catalina_whale_mixer'
         || entry.nft.collection === 'blocksmith_labs'
         || entry.nft.collection === 'cets_on_creck'));
       const _raffles = regs.map(entry => {
