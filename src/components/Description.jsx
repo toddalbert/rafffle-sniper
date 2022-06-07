@@ -4,7 +4,7 @@ const validate = (e) => {
 }
 
 export default function Description({ raffle }) {
-  const ends = new Date(raffle.end * 1000);
+  const ends = new Date(raffle.end * 1000).toLocaleString("en-US")
   const remains = raffle.left * 100
   const pct = 100 / (1 + raffle.sold)
   return (
@@ -12,7 +12,7 @@ export default function Description({ raffle }) {
       <h3>{pct.toFixed(2)}% for {validate(raffle.price  * Math.pow(10, -raffle.decimals))} {raffle.mint.substring(0,4)}</h3>
       <p>Sold {raffle.sold} / {raffle.supply}</p>
       <p>Left {remains.toFixed(2)} %</p>
-      <p>Ends: {ends.toLocaleString('en-US', { timeZone: 'Atlantic/South_Georgia' })}</p>
+      <p>Ends: {ends}</p>
     </>
   )
 }
